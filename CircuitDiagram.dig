@@ -2,7 +2,158 @@
 <circuit>
   <version>1</version>
   <attributes/>
-  <visualElements/>
+  <visualElements>
+    <visualElement>
+      <elementName>Multiplexer</elementName>
+      <elementAttributes/>
+      <pos x="340" y="780"/>
+    </visualElement>
+    <visualElement>
+      <elementName>D_FF</elementName>
+      <elementAttributes/>
+      <pos x="640" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>32-bit accumulator
+(made up of 32 1-bit D Flip-Flops)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="540" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16x32-bit MUX
+(how to??)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="300" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Add</elementName>
+      <elementAttributes/>
+      <pos x="-120" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit Adder</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit Subtractor
+(has overflow check)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit Multiplier
+(output can go up to 32-bits)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="740"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit Divider</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="920"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Sub</elementName>
+      <elementAttributes/>
+      <pos x="-120" y="640"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Mul</elementName>
+      <elementAttributes/>
+      <pos x="-120" y="820"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Div</elementName>
+      <elementAttributes/>
+      <pos x="-120" y="980"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit AND</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="1060"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit OR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="1180"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit NOT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="1300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>16-bit XOR</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-160" y="1420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Decoder</elementName>
+      <elementAttributes/>
+      <pos x="260" y="1300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Text</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Description</string>
+          <string>Decoder 
+(why does it look like that)</string>
+        </entry>
+      </elementAttributes>
+      <pos x="240" y="1220"/>
+    </visualElement>
+  </visualElements>
   <wires/>
   <measurementOrdering/>
 </circuit>
