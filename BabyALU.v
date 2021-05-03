@@ -59,9 +59,6 @@ reg [16:0] result
 assign outputC = result[15:0];
 assign carry = result[16];
 
-//Declare and Allocate 4 Full adders
-Add_full FA[1:0] (inputA,inputB,Cin,Cout,S);
-
 always @(*)
 begin
  result=inputA-inputB;
