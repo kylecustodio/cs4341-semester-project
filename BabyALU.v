@@ -34,15 +34,11 @@ reg [16:0] result
 //Link the wires between the Adders
 assign outputC = result[15:0];
 assign carry = result[16];
-
-//Declare and Allocate 4 Full adders
-Add_full FA[1:0] (inputA,inputB,Cin,Cout,S);
-
+	
 always @(*)
 begin
  result=inputA+inputB;
 end
-
 endmodule
 
 //SUB operation
@@ -63,7 +59,6 @@ always @(*)
 begin
  result=inputA-inputB;
 end
-
 endmodule
 
 //AND operation
@@ -81,7 +76,6 @@ always@(*)
 begin
 	result=inputA&inputB
 end
- 
 endmodule
 
 /*****************************
