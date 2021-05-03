@@ -130,10 +130,12 @@ assign outputC = result[15:0]
 always@(*)
 begin
 	result=inputA|inputB
-	outputC=result;
+
 end
 endmodule
 	
+//NOT operation
+
 
 /*****************************
 * REST OF THE CODE IS BABY ALU
