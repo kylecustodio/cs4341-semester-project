@@ -81,7 +81,7 @@ end
 endmodule
 
 //DIV operation
-module DIVIDOR(inputA, inputB, outputC, carry);
+module DIVIDER(inputA, inputB, outputC, carry);
 //---------------------------------------
 input [15:0] inputA; wire [15:0] inputA;
 input [15:0] inputB; wire [15:0] inputB;
