@@ -116,6 +116,25 @@ begin
 end
 endmodule
 
+//OR operation
+module ORER(inputA, inputB, outputC);
+//---------------------------------------
+input [15:0] inputA; wire [15:0] inputA;
+input [15:0] inputB; wire [15:0] inputB;
+//---------------------------------------
+output [15:0] outputC; wire [15:0] outputC;
+reg [15:0] outputC;
+reg [15:0] result;
+assign outputC = result[15:0]
+
+always@(*)
+begin
+	result=inputA|inputB
+	outputC=result;
+end
+endmodule
+	
+
 /*****************************
 * REST OF THE CODE IS BABY ALU
 ******************************/
