@@ -61,6 +61,25 @@ begin
 end
 endmodule
 
+//MULT operation
+module MULTIPLIER(inputA, inputB, outputC, carry);
+//---------------------------------------
+input [15:0] inputA; wire [15:0] inputA;
+input [15:0] inputB; wire [15:0] inputB;
+//---------------------------------------
+output [15:0] outputC; wire [15:0] outputC;
+output carry; wire carry;
+//---------------------------------------
+reg [16:0] result
+//Link the wires between the Adders
+assign outputC = result[15:0];
+assign carry = result[16];
+always @(*)
+begin
+ result=inputA*inputB;
+end
+endmodule
+	
 //AND operation
 module ANDER(inputA,inputB,outputC);
 //---------------------------------------
