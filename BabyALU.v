@@ -13,11 +13,11 @@
 `define DONE  '4b0000
 `define RESET '4b0001
 `define ADD   '4b0010
-`define SUB	  '4b0011
+`define SUB   '4b0011
 `define MULT  '4b0100
 `define DIV   '4b0101
-`define AND	  '4b0110
-`define OR	  '4b0111
+`define AND   '4b0110
+`define OR    '4b0111
 `define NOT   '4b1000
 `define NOR   '4b1001
 
