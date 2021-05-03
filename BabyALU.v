@@ -19,7 +19,7 @@
 `define AND   '4b0110
 `define OR    '4b0111
 `define NOT   '4b1000
-`define NOR   '4b1001
+`define XOR   '4b1001
 
 //ADD operation
 module ADDER(inputA,inputB,outputC,carry);
@@ -130,11 +130,28 @@ assign outputC = result[15:0]
 always@(*)
 begin
 	result=inputA|inputB
-	outputC=result;
+
 end
 endmodule
 	
+//NOT operation
 
+//XOR operation
+module XORER(inputA, inputB, outputC);
+//---------------------------------------
+input [15:0] inputA; wire [15:0] inputA;
+input [15:0] inputB; wire [15:0] inputB;
+//---------------------------------------
+output [15:0] outputC; wire [15:0] outputC;
+reg [15:0] outputC;
+reg [15:0] result;
+assign outputC = result[15:0]
+
+always@(*)
+begin
+	result=inputA^inputB
+end
+endmodule
 /*****************************
 * REST OF THE CODE IS BABY ALU
 ******************************/
