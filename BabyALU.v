@@ -19,7 +19,7 @@
 `define AND   '4b0110
 `define OR    '4b0111
 `define NOT   '4b1000
-`define NOR   '4b1001
+`define XOR   '4b1001
 
 //ADD operation
 module ADDER(inputA,inputB,outputC,carry);
@@ -136,6 +136,7 @@ endmodule
 	
 //NOT operation
 
+//XOR operation
 
 /*****************************
 * REST OF THE CODE IS BABY ALU
