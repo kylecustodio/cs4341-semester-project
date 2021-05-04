@@ -106,7 +106,7 @@ input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
 output [31:0] outputC;
-reg [31:0] outputC;
+wire [31:0] outputC;
 reg [31:0] result;
 assign outputC = result[31:0];
 
@@ -123,7 +123,7 @@ input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
 output [31:0] outputC;
-reg [31:0] outputC;
+wire [31:0] outputC;
 reg [31:0] result;
 assign outputC = result[31:0];
 
@@ -139,7 +139,7 @@ module NOT(inputA, outputB);
 input [15:0]inputA; 
 //---------------------------------------
 output [31:0] outputB;
-reg [31:0] outputB;
+wire [31:0] outputB;
 reg [31:0] result;
 assign outputB = result[31:0];
 
@@ -157,7 +157,7 @@ input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
 output [31:0] outputC;
-reg [31:0] outputC;
+wire [31:0] outputC;
 reg [31:0] result;
 assign outputC = result[31:0];
 
