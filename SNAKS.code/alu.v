@@ -27,13 +27,13 @@ module ADDER(inputA,inputB,outputC,carry);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
+output [31:0] outputC;
 output carry;
 //---------------------------------------
-reg [16:0] result;
+reg [32:0] result;
 //Link the wires between the Adders
-assign outputC = result[15:0];
-assign carry = result[16];
+assign outputC = result[31:0];
+assign carry = result[32];
 	
 always @(*)
 begin
@@ -47,13 +47,13 @@ module SUBTRACTOR(inputA,inputB,outputC,carry);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
+output [31:0] outputC;
 output carry;
 //---------------------------------------
-reg [16:0] result;
+reg [32:0] result;
 //Link the wires between the Adders
-assign outputC = result[15:0];
-assign carry = result[16];
+assign outputC = result[31:0];
+assign carry = result[32];
 
 always @(*)
 begin
@@ -67,13 +67,13 @@ module MULTIPLIER(inputA, inputB, outputC, carry);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
+output [31:0] outputC;
 output carry;
 //---------------------------------------
-reg [16:0] result;
+reg [32:0] result;
 //Link the wires between the Adders
-assign outputC = result[15:0];
-assign carry = result[16];
+assign outputC = result[31:0];
+assign carry = result[32];
 always @(*)
 begin
  result=inputA*inputB;
@@ -86,13 +86,13 @@ module DIVIDER(inputA, inputB, outputC, carry);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
+output [31:0] outputC;
 output carry;
 //---------------------------------------
-reg [16:0] result;
+reg [32:0] result;
 //Link the wires between the Adders
-assign outputC = result[15:0];
-assign carry = result[16];
+assign outputC = result[31:0];
+assign carry = result[32];
 always @(*)
 begin
  result=inputA/inputB;
@@ -105,10 +105,10 @@ module ANDER(inputA,inputB,outputC);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
-reg [15:0] outputC;
-reg [15:0] result;
-assign outputC = result[15:0];
+output [31:0] outputC;
+reg [31:0] outputC;
+reg [31:0] result;
+assign outputC = result[31:0];
 
 always@(*)
 begin
@@ -122,10 +122,10 @@ module ORER(inputA, inputB, outputC);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
-reg [15:0] outputC;
-reg [15:0] result;
-assign outputC = result[15:0];
+output [31:0] outputC;
+reg [31:0] outputC;
+reg [31:0] result;
+assign outputC = result[31:0];
 
 always@(*)
 begin
@@ -134,6 +134,21 @@ end
 endmodule
 	
 //NOT operation
+module NOT(inputA, outputB);
+//----------------------------------------
+input [15:0]inputA; 
+//---------------------------------------
+output [31:0] outputB;
+reg [31:0] outputB;
+reg [31:0] result;
+assign outputB = result[31:0];
+
+always@(*)
+begin
+	result = ~inputA;
+end
+endmodule
+
 
 //XOR operation
 module XORER(inputA, inputB, outputC);
@@ -141,10 +156,10 @@ module XORER(inputA, inputB, outputC);
 input [15:0] inputA;
 input [15:0] inputB;
 //---------------------------------------
-output [15:0] outputC;
-reg [15:0] outputC;
-reg [15:0] result;
-assign outputC = result[15:0];
+output [31:0] outputC;
+reg [31:0] outputC;
+reg [31:0] result;
+assign outputC = result[31:0];
 
 always@(*)
 begin
@@ -230,9 +245,9 @@ endmodule
 module Mux(channels,select,b);
 input [15:0][1:0]channels;
 input [3:0] select;
-output [1:0] b;
+output [15:0] b;
 wire[15:0][1:0] channels;
-reg [1:0] b;
+reg [15:0] b;
 always @(*)
 begin
  b=channels[select]; 
@@ -248,47 +263,60 @@ module breadboard(clk,rst,A,B,C,opcode);
 //----------------------------------
 input clk; 
 input rst;
-input [1:0] A;
-input [1:0] B;
+input [15:0] A;
+input [15:0] B;
 input [3:0] opcode;
 wire clk;
 wire rst;
-wire [1:0] A;
-wire [1:0] B;
+wire [15:0] A;
+wire [15:0] B;
 wire [3:0] opcode;
 //----------------------------------
-output [1:0] C;
-reg [1:0] C;
+output [15:0] C;
+reg [15:0] C;
 //----------------------------------
 
 wire [15:0][1:0]channels;
-wire [1:0] b;
-wire [1:0] outputADD;
-wire [1:0] outputAND;
+wire [15:0] b;
+wire [15:0] outputADD;
+wire [15:0] outputSUB;
+wire [15:0] outputMULT;
+wire [15:0] outputDIV;
+wire [15:0] outputAND;
+wire [15:0] outputOR;
+wire [15:0] outputNOT;
+wire [15:0] outputXOR;
 
-reg [1:0] regA;
-reg [1:0] regB;
+reg [15:0] regA;
+reg [15:0] regB;
 
-reg  [1:0] next;
-wire [1:0] cur;
+reg  [15:0] next;
+wire [15:0] cur;
 
 Mux mux1(channels,opcode,b);
 ADDER add1(regA,regB,outputADD,carry);
-ANDER and1(regA,regB,outputAND);
+SUBTRACTOR sub1(regA, regB, outputSUB, carry);
+MULTIPLIER mult1(regA, regB, outputMULT, carry);
+DIVIDER div1(regA, regB, outputDIV, carry);
+ANDER and1(regA, regB, outputAND);
+ORER or1(regA, regB, outputOR);
+NOT not1(regA, outputNOT);
+XORER xor1(regA, regB, outputXOR);
 
-DFF ACC1 [1:0] (clk,next,cur);
+
+DFF ACC1 [15:0] (clk,next,cur);
 
 
 assign channels[0]=cur;//NO-OP
 assign channels[1]=0;//RESET
-assign channels[2]=0;//GROUND=0
-assign channels[3]=0;//GROUND=0
-assign channels[4]=0;//GROUND=0
-assign channels[5]=outputADD;
-assign channels[6]=0;//GROUND=0
-assign channels[7]=0;//GROUND=0
-assign channels[8]=0;//GROUND=0
-assign channels[9]=outputAND;
+assign channels[2]=outputADD;//ADD
+assign channels[3]=outputSUB;//SUB
+assign channels[4]=outputMULT;//MULT
+assign channels[5]=outputDIV;//DIV
+assign channels[6]=outputAND;//AND
+assign channels[7]=outputOR;//OR
+assign channels[8]=outputNOT;//NOT
+assign channels[9]=outputXOR;//XOR
 assign channels[10]=0;//GROUND=0
 assign channels[11]=0;//GROUND=0
 assign channels[12]=0;//GROUND=0
@@ -314,9 +342,9 @@ module testbench();
 //Local Variables
    reg clk;
    reg rst;
-   reg [1:0] inputA;
-   reg [1:0] inputB;
-   wire [1:0] outputC;
+   reg [15:0] inputA;
+   reg [15:0] inputB;
+   wire [32:0] outputC;
    reg [3:0] opcode;
    reg [15:0] count;
 
@@ -337,7 +365,7 @@ breadboard bb8(clk,rst,inputA,inputB,outputC,opcode);
 
 
 
-    initial begin //Start Output Thread
+    initial begin //Start Output Thread TODO ******************
 	forever
          begin
 		 $display("(ACC:%2b)(OPCODE:%4b)(IN:%2b)(OUT:%2b)",bb8.cur,opcode,inputA,bb8.b);
@@ -349,23 +377,23 @@ breadboard bb8(clk,rst,inputA,inputB,outputC,opcode);
 	initial begin//Start Stimulous Thread
 	#6;	
 	//---------------------------------
-	inputA=2'h0000;
+	inputA=2'b00;
 	opcode=4'b0000;//NO-OP
 	#10; 
 	//---------------------------------
-	inputA=2'h0000;
+	inputA=2'b00;
 	opcode=4'b0001;//RESET
 	#10
 	//---------------------------------	
-	inputA=2'h0000;
+	inputA=2'b00;
 	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=2'h0000;
+	inputA=2'b00;
 	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=2'h01;
+	inputA=2'b01;
 	opcode=4'b0101;//ADD
 	#10;
 	//---------------------------------
