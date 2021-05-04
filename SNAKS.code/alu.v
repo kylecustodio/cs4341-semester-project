@@ -57,7 +57,7 @@ assign carry = result[32];
 
 always @(*)
 begin
- result=inputA-inputB;
+ result=inputB-inputA;
 end
 endmodule
 
