@@ -295,20 +295,20 @@ wire [15:0] A;
 wire [15:0] B;
 wire [3:0] opcode;
 //----------------------------------
-output [15:0] C;
-reg [15:0] C;
+output [31:0] C;
+reg [31:0] C;
 //----------------------------------
 
 wire [15:0][1:0]channels;
 wire [15:0] b;
-wire [15:0] outputADD;
-wire [15:0] outputSUB;
-wire [15:0] outputMULT;
-wire [15:0] outputDIV;
-wire [15:0] outputAND;
-wire [15:0] outputOR;
-wire [15:0] outputNOT;
-wire [15:0] outputXOR;
+wire [31:0] outputADD;
+wire [31:0] outputSUB;
+wire [31:0] outputMULT;
+wire [31:0] outputDIV;
+wire [31:0] outputAND;
+wire [31:0] outputOR;
+wire [31:0] outputNOT;
+wire [31:0] outputXOR;
 
 reg [15:0] regA;
 reg [15:0] regB;
@@ -367,7 +367,7 @@ module testbench();
    reg rst;
    reg [15:0] inputA;
    reg [15:0] inputB;
-   wire [32:0] outputC;
+   wire [31:0] outputC;
    reg [3:0] opcode;
    reg [15:0] count;
 
