@@ -9,17 +9,17 @@
 */
 
 //OpCodes
-`define NOOP  '4b0000 
-`define DONE  '4b0000
-`define RESET '4b0001
-`define ADD   '4b0010
-`define SUB   '4b0011
-`define MULT  '4b0100
-`define DIV   '4b0101
-`define AND   '4b0110
-`define OR    '4b0111
-`define NOT   '4b1000
-`define XOR   '4b1001
+`define NOOP  4'b0000 
+`define DONE  4'b0000
+`define RESET 4'b0001
+`define ADD   4'b0010
+`define SUB   4'b0011
+`define MULT  4'b0100
+`define DIV   4'b0101
+`define AND   4'b0110
+`define OR    4'b0111
+`define NOT   4'b1000
+`define XOR   4'b1001
 
 //ADD operation
 module ADDER(inputA,inputB,outputC,carry);
@@ -182,16 +182,39 @@ module DFF(clk,in,out);
 	out = in;
 endmodule
 
-//Decoder (n to M)
+//Decoder (4 to 16)
 module Dec(a,b);
+input [3:0] a;
+output [15:0] b;
+wire [15:0] b;
+reg [15:0] result;
+assign b = result;
 
-parameter n=4;
-parameter m=16;
-input [n-1:0] a;
-output [m-1:0] b;
-
-assign  b= 1<<a; //Shift 1 a places. Makes a 1-hot.
-
+always @(a)
+begin
+	if(a == 4'b0000)
+		result = 16'b0000000000000001;
+	else if(a == 4'b0001)
+		result = 16'b0000000000000010;
+	else if(a == 4'b0010)
+		result = 16'b0000000000000100;
+	else if(a == 4'b0011)
+		result = 16'b0000000000001000;
+	else if(a == 4'b0100)
+		result = 16'b0000000000010000;
+	else if(a == 4'b0101)
+		result = 16'b0000000000100000;
+	else if(a == 4'b0110)
+		result = 16'b0000000001000000;
+	else if(a == 4'b0111)
+		result = 16'b0000000010000000;
+	else if(a == 4'b1000)
+		result = 16'b0000000100000000;
+	else if(a == 4'b1001)
+		result = 16'b0000001000000000;
+	else
+		result = 16'b0000000000000001;
+end
 endmodule
 
 //HALF-ADDER
@@ -393,72 +416,68 @@ breadboard bb8(clk,rst,inputA,inputB,outputC,opcode);
 	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=2'b01;
-	opcode=4'b0101;//ADD
-	#10;
-	//---------------------------------
-	inputA=2'b00;
-	opcode=4'b0000;//NOOP
-	#10;
-	//---------------------------------	
-	inputA=2'b01;
-	opcode=4'b0101;//ADD
-	#10
-	//---------------------------------	
-	inputA=2'b00;
-	opcode=4'b0000;//NOOP
-	#10;
-	//---------------------------------	
-	inputA=2'b01;
-	opcode=4'b0101;//ADD
-	#10
-	//---------------------------------	
-	inputA=2'b00;
-	opcode=4'b0000;//NOOP
+	inputA=4'b0011;
+	opcode=4'b0010;//ADD
 	#10;
 	//---------------------------------	
 	inputA=2'b00;
-	opcode=4'b0001;//RESET
+	opcode=4'b0000;//NO OP
+	#10;
+	//---------------------------------	
+	inputA=4'b0001;
+	opcode=4'b0011;//SUB
 	#10;
 	//---------------------------------	
 	inputA=2'b00;
-	opcode=4'b0000;//NOOP
+	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=2'b11;
-	opcode=4'b0101;//ADD
-	#10
-	//---------------------------------	
-	inputA=2'b00;
-	opcode=4'b0000;//NOOP
-	#10;
-	//---------------------------------	
-	inputA=2'b10;
-	opcode=4'b1001;//AND
+	inputA=4'b1111;
+	opcode=4'b0100;//MULT
 	#10;
 	//---------------------------------	
 	inputA=2'b00;
-	opcode=4'b0000;//NOOP
+	opcode=4'b0000;//NO OP
+	#10;
+	//---------------------------------	
+	inputA=4'b0011;
+	opcode=4'b0101;//DIV
 	#10;
 	//---------------------------------	
 	inputA=2'b00;
-	opcode=4'b0001;//Reset
+	opcode=4'b0000;//NO OP
+	#10;
+	//---------------------------------	
+	inputA=4'b1111;
+	opcode=4'b0110;//AND
 	#10;
 	//---------------------------------	
 	inputA=2'b00;
-	opcode=4'b0000;//NOOP
+	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=2'b01;
-	opcode=4'b0101;//ADD
-	
-	//Uh-oh...it was left in the ADD operation...its an addtion STATE!
-	#10
-	#10
-	#10
-	#10
-	#10
-	#10
+	inputA=4'b0111;
+	opcode=4'b0111;//OR
+	#10;
+	//---------------------------------	
+	inputA=2'b00;
+	opcode=4'b0000;//NO OP
+	#10;
+	//---------------------------------	
+	inputA=4'b1010;
+	opcode=4'b1000;//NOT
+	//---------------------------------	
+	inputA=2'b00;
+	opcode=4'b0000;//NO OP
+	#10;
+	//---------------------------------	
+	inputA=4'b1010;
+	opcode=4'b1001;//XOR
+	#10;
+	//---------------------------------	
+	inputA=2'b00;
+	opcode=4'b0000;//NO OP
+	#10;
 	//---------------------------------	
 	inputA=2'b00;
 	opcode=4'b0001;//RESET
