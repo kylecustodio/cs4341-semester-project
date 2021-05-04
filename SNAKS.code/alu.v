@@ -416,7 +416,7 @@ breadboard bb8(clk,rst,inputA,inputB,outputC,opcode);
 	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=4'b0011;
+	inputA=16'b1111111111111111;
 	opcode=4'b0010;//ADD
 	#10;
 	//---------------------------------	
@@ -432,7 +432,7 @@ breadboard bb8(clk,rst,inputA,inputB,outputC,opcode);
 	opcode=4'b0000;//NO OP
 	#10;
 	//---------------------------------	
-	inputA=4'b1111;
+	inputA=16'b1111111111111111;
 	opcode=4'b0100;//MULT
 	#10;
 	//---------------------------------	
