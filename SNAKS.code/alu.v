@@ -352,8 +352,8 @@ begin
  regA=A;
  regB=cur;
 
- C=b[15:0];
- next=b[15:0];
+ C=b[31:0];
+ next=b[31:0];
 end
 
 endmodule
