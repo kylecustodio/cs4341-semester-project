@@ -268,9 +268,9 @@ endmodule
 module Mux(channels,select,b);
 input [15:0][1:0]channels;
 input [3:0] select;
-output [15:0] b;
+output [31:0] b;
 wire[15:0][1:0] channels;
-reg [15:0] b;
+reg [31:0] b;
 always @(*)
 begin
  b=channels[select]; 
@@ -300,7 +300,7 @@ reg [31:0] C;
 //----------------------------------
 
 wire [15:0][1:0]channels;
-wire [15:0] b;
+wire [31:0] b;
 wire [31:0] outputADD;
 wire [31:0] outputSUB;
 wire [31:0] outputMULT;
@@ -352,8 +352,8 @@ begin
  regA=A;
  regB=cur;
 
- assign C=b;
- assign next=b;
+ C=b[15:0];
+ next=b[15:0];
 end
 
 endmodule
