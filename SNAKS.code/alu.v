@@ -266,10 +266,10 @@ endmodule
 
 //MUX Multiplexer 16 by 15
 module Mux(channels,select,b);
-input [15:0][15:0]channels;
+input [15:0][31:0]channels;
 input [3:0] select;
 output [31:0] b;
-wire[15:0][15:0] channels;
+wire[15:0][31:0] channels;
 reg [31:0] b;
 always @(*)
 begin
@@ -299,7 +299,7 @@ output [31:0] C;
 reg [31:0] C;
 //----------------------------------
 
-wire [15:0][15:0]channels;
+wire [15:0][31:0]channels;
 wire [31:0] b;
 wire [31:0] outputADD;
 wire [31:0] outputSUB;
