@@ -313,8 +313,8 @@ wire [31:0] outputXOR;
 reg [15:0] regA;
 reg [15:0] regB;
 
-reg  [15:0] next;
-wire [15:0] cur;
+reg  [31:0] next;
+wire [31:0] cur;
 
 Mux mux1(channels,opcode,b);
 ADDER add1(regA,regB,outputADD,carry);
@@ -327,7 +327,7 @@ NOT not1(regA, outputNOT);
 XORER xor1(regA, regB, outputXOR);
 
 
-DFF ACC1 [15:0] (clk,next,cur);
+DFF ACC1 [31:0] (clk,next,cur);
 
 
 assign channels[0]=cur;//NO-OP
